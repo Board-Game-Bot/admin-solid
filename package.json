@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@soku-solid/ui": "^0.0.4",
+    "@soku-solid/utils": "^0.0.4",
     "@solidjs/router": "^0.13.0",
     "axios": "^1.6.7",
     "lodash-es": "^4.17.21",
-    "solid-js": "^1.8.15"
+    "solid-js": "^1.8.15",
+    "solid-markdown": "^2.0.1"
   },
   "devDependencies": {
     "@iconify-json/mdi": "^1.1.64",
