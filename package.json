@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@soku-solid/ui": "latest",
+    "@soku-solid/ui": "^0.0.5",
     "@soku-solid/utils": "latest",
     "@solidjs/router": "^0.13.0",
     "axios": "^1.6.7",
