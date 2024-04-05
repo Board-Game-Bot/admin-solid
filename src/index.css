@@ -9,3 +9,12 @@ body {
 * {
     color: #ccc;
 }
+
+textarea {
+    background-color: #666;
+    border: 0;
+    outline: 0 !important;
+    resize: none;
+    height: 1000px;
+    aspect-ratio: 0 !important;
+}
