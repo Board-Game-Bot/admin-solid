@@ -15,7 +15,7 @@ export const GameCard = ({ game, onChange }: Props) => {
   };
 
   return (
-    <div class={'flex justify-between items-center px5 py2 gap4 bg-#333 rounded-2'}>
+    <div class={'flex justify-between items-center px5 py2 gap4 bg-#eee rounded-2'}>
       <div class={'flex items-center gap-4'}>
         <div class={'text-10 w-fit h-fit'}>
           {game.icon}

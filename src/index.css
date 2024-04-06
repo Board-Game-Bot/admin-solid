@@ -1,19 +1,14 @@
 :root {
-    background-color: #444;
+    background-color: #d0d0d0;
 }
 
 body {
     margin: 0;
 }
 
-* {
-    color: #ccc;
-}
-
 textarea {
-    background-color: #666;
-    border: 0;
-    outline: 0 !important;
+    /*background-color: #666;*/
+    outline: 1px solid #ccc; !important;
     resize: none;
     height: 1000px;
     aspect-ratio: 0 !important;

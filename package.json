@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@soku-solid/ui": "^0.0.5",
+    "@soku-solid/ui": "^0.0.6",
     "@soku-solid/utils": "latest",
     "@solidjs/router": "^0.13.0",
     "axios": "^1.6.7",
+    "highlight.js": "^11.9.0",
     "lodash-es": "^4.17.21",
     "solid-js": "^1.8.15",
     "solid-markdown": "^2.0.1"
