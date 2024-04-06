@@ -1,20 +1,14 @@
-import { createSignal } from 'solid-js';
 import { useNavigate } from '@solidjs/router';
+import { Button, Input, NewForm } from '@soku-solid/ui';
 import { LoginAccount } from './api';
-import { Button, Input, ScreenLayout } from '@/components';
+import { ScreenLayout } from '@/components';
 import { UserInfoStore, TokenStore } from '@/stores';
 
 export default function App() {
-  const [name, setName] = createSignal('');
-  const [passwd, setPasswd] = createSignal('');
-
   const nav = useNavigate();
   const handleClick = async () => {
     try {
-      const data = await LoginAccount({
-        id: name(),
-        passwd: passwd(),
-      });
+      const data = await LoginAccount(form.gets() as any);
       UserInfoStore.s(data.user);
       TokenStore.s(data.jwt);
       nav('/game');
@@ -22,14 +16,28 @@ export default function App() {
     catch { }
   };
 
+  const [form] = NewForm.useForm();
   return (
     <ScreenLayout>
-      <div class={'flex flex-col gap-3 items-start bg-#222 p7 rounded-3'}>
-        <div>用户名</div>
-        <Input value={name()} onChange={setName} />
-        <div>密码</div>
-        <Input value={passwd()} onChange={setPasswd} />
-        <Button onClick={handleClick}>登陆</Button>
+      <div class={'bg-#ddd p7 pt0 rounded-3'}>
+        <NewForm form={form}>
+          <NewForm.Item
+            label={'用户名'}
+            field={'id'}
+            component={Input}
+            width={'100%'}
+            placeholder={'请输入用户名'}
+          />
+          <NewForm.Item
+            label={'密码'}
+            field={'passwd'}
+            component={Input}
+            placeholder={'请输入密码'}
+            type={'password'}
+            width={'100%'}
+          />
+          <Button class={'w-full'} onClick={handleClick}>登陆</Button>
+        </NewForm>
       </div>
     </ScreenLayout>
   );
