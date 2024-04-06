@@ -6,7 +6,7 @@ export const API = axios.create({
 });
 
 API.interceptors.request.use(req => {
-  req.headers.set('authorization', `Bearer ${TokenStore.v()}`);
+  req.headers.set('authorization', `Bearer ${TokenStore[0]()}`);
   return req;
 });
 

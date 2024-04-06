@@ -1,4 +1,4 @@
+import { createSignal } from 'solid-js';
 import { UserInfoType } from '@/types';
-import { useSignal } from '@/hooks';
 
-export const UserInfoStore = useSignal<UserInfoType>();
+export const UserInfoStore = createSignal<UserInfoType>();

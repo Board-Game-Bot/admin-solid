@@ -7,8 +7,7 @@ body {
 }
 
 textarea {
-    /*background-color: #666;*/
-    outline: 1px solid #ccc; !important;
+    outline: 1px solid #ccc;
     resize: none;
     height: 1000px;
     aspect-ratio: 0 !important;

@@ -5,12 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@soku-solid/ui": "^0.0.6",
-    "@soku-solid/utils": "latest",
     "@solidjs/router": "^0.13.0",
     "axios": "^1.6.7",
     "highlight.js": "^11.9.0",
