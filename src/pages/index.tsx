@@ -9,8 +9,8 @@ export default function App() {
   const handleClick = async () => {
     try {
       const data = await LoginAccount(form.gets() as any);
-      UserInfoStore.s(data.user);
-      TokenStore.s(data.jwt);
+      UserInfoStore[1](data.user);
+      TokenStore[1](data.jwt);
       nav('/game');
     }
     catch { }

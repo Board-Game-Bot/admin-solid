@@ -1,16 +1,15 @@
-import { For, onMount } from 'solid-js';
+import { createSignal, For, onMount } from 'solid-js';
 import { CreateGame, ListGames } from './api';
 import { GameCard, AddGameForm } from './components';
 import { ScreenLayout } from '@/components';
-import { useSignal } from '@/hooks';
 import { Game } from '@/types';
 
 export default function GamePage() {
-  const games = useSignal<Game[]>([]);
+  const [games, setGames] = createSignal<Game[]>([]);
 
   const handleLoadGames = async () => {
     const { items } = await ListGames();
-    games.s(items);
+    setGames(items);
   };
 
   onMount(handleLoadGames);
@@ -29,9 +28,9 @@ export default function GamePage() {
     <ScreenLayout>
       <div class={'flex items-center gap-5'}>
         <div>
-          {games.v().length > 0 ?
+          {games().length > 0 ?
             <div class={'flex flex-col gap-3'}>
-              <For each={games.v()}>
+              <For each={games()}>
                 {(game) =>
                   <GameCard game={game} onChange={handleLoadGames} />
                 }

@@ -1,29 +1,28 @@
-import { createEffect, onMount } from 'solid-js';
+import { createEffect, createSignal, onMount } from 'solid-js';
 import { isObject } from 'lodash-es';
-import { useSignal } from '@/hooks/useSignal.ts';
 
-export const useLocalStorage = <T>(key: string, defaultValue?: T) => {
-  const signal = useSignal<T>(defaultValue);
+export const useLocalStorage = <T>(key: string) => {
+  const [value, setValue] = createSignal<T>();
 
   onMount(() => {
     try {
       const obj = localStorage.getItem(key)!;
-      signal.s(JSON.parse(obj));
+      setValue(JSON.parse(obj));
     }
     catch {
       const item = localStorage.getItem(key)!;
-      signal.s(() => item as T);
+      setValue(() => item as T);
     }
   });
 
   createEffect(() => {
-    if (isObject(signal.v())) {
-      localStorage.setItem(key, JSON.stringify(signal.v()));
+    if (isObject(value())) {
+      localStorage.setItem(key, JSON.stringify(value()));
     }
     else {
-      localStorage.setItem(key, '' + signal.v());
+      localStorage.setItem(key, '' + value());
     }
   });
 
-  return signal;
+  return [value, setValue];
 };
