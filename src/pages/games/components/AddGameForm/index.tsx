@@ -1,4 +1,5 @@
 import { Button, Input, NewForm } from '@soku-solid/ui';
+import { createSignal, onCleanup, onMount } from 'solid-js';
 import { MaybePromise } from '@/types';
 import { MarkdownDescription } from '@/pages/games/components/AddGameForm/components';
 
@@ -14,8 +15,46 @@ export const AddGameForm = (props: Props) => {
     props.onSubmit?.(data);
   };
 
+  const [isHolding, setHolding] = createSignal(false);
+  const [offset, setOffset] = createSignal<[number, number]>([0, 0]);
+  const handleMouseDown = (evt: MouseEvent) => {
+    if (evt.button === 0) {
+      const x = evt.offsetX;
+      const y = evt.offsetY;
+      setHolding(true);
+      setOffset([x, y]);
+    }
+  };
+
+  const handleMouseUp = (evt: MouseEvent) => {
+    if (evt.button === 0) {
+      setHolding(false);
+    }
+  };
+
+  let divRef: HTMLDivElement;
+
+  const handleMouseMove = (evt: MouseEvent) => {
+    if (!isHolding()) {
+      return ;
+    }
+    const x = evt.clientX;
+    const y = evt.clientY;
+    const currentOffset = offset();
+    const nx = x - currentOffset[0];
+    const ny = y - currentOffset[1];
+    divRef.style.setProperty('left', `${nx}px`);
+    divRef.style.setProperty('top', `${ny}px`);
+  };
+  onMount(() => {
+    window.addEventListener('mousemove', handleMouseMove);
+  });
+  onCleanup(() => {
+    window.removeEventListener('mousemove', handleMouseMove);
+  });
+
   return (
-    <div class={'absolute left-5 top-10 p10 pt3 bg-#eee rounded-xl text-12px'}>
+    <div ref={el => divRef = el} class={'absolute left-5 top-10 p10 pt3 bg-#eee rounded-xl text-12px cursor-move'} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
       <NewForm form={form}>
         <NewForm.Item
           label={'ID'}
