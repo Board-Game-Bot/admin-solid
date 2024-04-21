@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@soku-solid/ui':
-    specifier: ^0.0.6
-    version: 0.0.6(highlight.js@11.9.0)(solid-js@1.8.15)
+    specifier: ^0.1.1
+    version: 0.1.1(highlight.js@11.9.0)(solid-js@1.8.15)
   '@solidjs/router':
     specifier: ^0.13.0
     version: 0.13.0(solid-js@1.8.15)
@@ -886,8 +886,8 @@ packages:
       - typescript
     dev: true
 
-  /@soku-solid/ui@0.0.6(highlight.js@11.9.0)(solid-js@1.8.15):
-    resolution: {integrity: sha512-DjeKSM/GFxJrunqwXOq/aeoptrxJmP7Ku31QN/8GhMkUK2ZC1oJWTLAnLPk6UeGG1F+QulDWuHCjVC59JdZn+A==}
+  /@soku-solid/ui@0.1.1(highlight.js@11.9.0)(solid-js@1.8.15):
+    resolution: {integrity: sha512-157Lyir5yAQ6j9iA/2Fg6XWmJ9Dc+KZMkgEcTxeGBo6PKNfnoR5tVliBYNelFZenAvzO3yTNhJI2MiFv90fymQ==}
     peerDependencies:
       '@soku-solid/utils': latest
       highlight.js: latest
