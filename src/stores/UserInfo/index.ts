@@ -1,4 +1,4 @@
 import { createSignal } from 'solid-js';
-import { UserInfoType } from '@/types';
+import { User } from '@/api/entity';
 
-export const UserInfoStore = createSignal<UserInfoType>();
+export const UserInfoStore = createSignal<User>();
