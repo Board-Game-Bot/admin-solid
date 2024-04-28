@@ -1,22 +1,23 @@
 import { createSignal, For, onMount } from 'solid-js';
-import { CreateGame, ListGames } from './api';
 import { GameCard, AddGameForm } from './components';
 import { ScreenLayout } from '@/components';
-import { Game } from '@/types';
+import { client } from '@/api';
+import { Game } from '@/api/entity';
+import { CreateGameRequest } from '@/api/dtos';
 
 export default function GamePage() {
   const [games, setGames] = createSignal<Game[]>([]);
 
   const handleLoadGames = async () => {
-    const { items } = await ListGames();
-    setGames(items);
+    const { Items } = await client.ListGames({});
+    setGames(Items);
   };
 
   onMount(handleLoadGames);
 
   const handleSubmit = async (data: Record<string, any>) => {
     try {
-      await CreateGame(data as Game);
+      await client.CreateGame(data as CreateGameRequest);
       handleLoadGames();
     }
     catch (e) {

@@ -1,20 +1,31 @@
 import { useNavigate } from '@solidjs/router';
 import { Button, Input, NewForm } from '@soku-solid/ui';
-import { LoginAccount } from './api';
+import { createEffect } from 'solid-js';
 import { ScreenLayout } from '@/components';
-import { UserInfoStore, TokenStore } from '@/stores';
+import { TokenStore, UserInfoStore } from '@/stores';
+import { client } from '@/api';
+import { LoginAccountRequest } from '@/api/dtos';
 
 export default function App() {
   const nav = useNavigate();
   const handleClick = async () => {
     try {
-      const data = await LoginAccount(form.gets() as any);
-      UserInfoStore[1](data.user);
-      TokenStore[1](data.jwt);
-      nav('/game');
+      const { Jwt } = await client.LoginAccount(form.gets() as LoginAccountRequest);
+      TokenStore[1](Jwt);
     }
     catch { }
   };
+
+  createEffect(async () => {
+    const jwt = TokenStore[0]();
+    if (!jwt) {
+      return ;
+    }
+    const user = await client.GetUser({});
+    UserInfoStore[1](user);
+    nav('/game');
+  });
+
 
   const [form] = NewForm.useForm();
   return (
@@ -23,14 +34,14 @@ export default function App() {
         <NewForm form={form}>
           <NewForm.Item
             label={'用户名'}
-            field={'id'}
+            field={'Id'}
             component={Input}
             width={'100%'}
             placeholder={'请输入用户名'}
           />
           <NewForm.Item
             label={'密码'}
-            field={'passwd'}
+            field={'Password'}
             component={Input}
             placeholder={'请输入密码'}
             type={'password'}

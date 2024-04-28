@@ -1,6 +1,6 @@
 import { capitalize } from 'lodash-es';
-import { DeleteGame } from '../../api';
-import { Game } from '@/types';
+import { Game } from '@/api/entity';
+import { client } from '@/api';
 
 interface Props {
   game: Game;
@@ -10,7 +10,7 @@ interface Props {
 export const GameCard = ({ game, onChange }: Props) => {
 
   const handleDelete = async () => {
-    await DeleteGame({ id: game.id });
+    await client.DeleteGame({ Id: game.Id });
     onChange?.();
   };
 
@@ -18,14 +18,14 @@ export const GameCard = ({ game, onChange }: Props) => {
     <div class={'flex justify-between items-center px5 py2 gap4 bg-#eee rounded-2'}>
       <div class={'flex items-center gap-4'}>
         <div class={'text-10 w-fit h-fit'}>
-          {game.icon}
+          {game.Icon}
         </div>
         <div>
           <div class={'text-2xl'}>
-            {capitalize(game.id)}
+            {capitalize(game.Id)}
           </div>
           <div class={'text-16px text-#999'}>
-            {game.npmPackage}@{game.version}
+            {game.NpmPackage}@{game.Version}
           </div>
         </div>
       </div>

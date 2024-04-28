@@ -1,8 +1,8 @@
 import { Button, Input, NewForm, AutoComplete } from '@soku-solid/ui';
 import { createSignal, onCleanup, onMount } from 'solid-js';
+import { MarkdownDescription } from './components';
+import { ListNpmPackageApi, ListVersionsApi } from './api';
 import { MaybePromise } from '@/types';
-import { MarkdownDescription } from '@/pages/games/components/AddGameForm/components';
-import { ListNpmPackageApi, ListVersionsApi } from '@/pages/games/components/AddGameForm/api.ts';
 
 interface Props {
     onSubmit?: (data: Record<string, any>) => MaybePromise<any>;
@@ -69,33 +69,33 @@ export const AddGameForm = (props: Props) => {
       <NewForm form={form}>
         <NewForm.Item
           label={'ID'}
-          field={'id'}
+          field={'Id'}
           component={Input}
           placeholder={'游戏 ID'}
           width={'100%'}
         />
         <NewForm.Item
           label={'描述'}
-          field={'description'}
+          field={'Description'}
           component={MarkdownDescription}
         />
         <NewForm.Item
           label={'图标'}
-          field={'icon'}
+          field={'Icon'}
           component={Input}
           placeholder={'游戏图标(emoji)'}
           width={'100%'}
         />
         <NewForm.Item
           label={'玩家人数'}
-          field={'playerCount'}
+          field={'PlayerCount'}
           component={Input}
           placeholder={'玩家人数'}
           width={'100%'}
         />
         <NewForm.Item
           label={'NPM 包'}
-          field={'npmPackage'}
+          field={'NpmPackage'}
           component={AutoComplete}
           optionsFn={ListNpmPackageApi}
           placeholder={'NPM 中所对应的游戏包'}
@@ -103,7 +103,7 @@ export const AddGameForm = (props: Props) => {
         />
         <NewForm.Item
           label={'版本'}
-          field={'version'}
+          field={'Version'}
           component={AutoComplete}
           optionsFn={() => ListVersionsApi(npmPackage())}
           width={'100%'}
